@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./build/tailwind.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <title>Inventory App</title>
+</head>
+
+<body>
+  <div class="bg-slate-800 h-full w-full">
+    <!-- appbar -->
+    <div class="flex items-center justify-center h-12 gap-x-4 bg-slate-700 rounded-b mb-5 ">
+      <h1 class="text-xl font-bold text-slate-200">Inventory shop App</h1>
+      <span
+        class="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 text-slate-300 border-2 border-slate-300"
+        id="length"></span>
+    </div>
+    <!-- app content -->
+    <div class="container max-w-screen-md mx-auto">
+      <!-- category form-->
+      <div>
+        <h2 class="text-xl text-slate-300 font-bold mb-2">Add New Category</h2>
+        <form class="bg-slate-700 p-4 rounded-lg flex flex-col gap-y-4">
+          <div>
+            <!-- input -->
+            <label for="category-title" class="block mb-1 text-slate-200">Title</label>
+            <input type="text" name="category-title" id="category-title"
+              class="bg-transparent rounded-xl border-2 border-slate-500 text-slate-400">
+          </div>
+          <!-- textarea -->
+          <div>
+            <label for="category-descreption" class="block mb-1 text-slate-200">Descreption</label>
+            <textarea type="text" name="category-descreption" id="category-description"
+              class="bg-transparent rounded-xl border-2 border-slate-500 text-slate-400 w-full"></textarea>
+          </div>
+          <!-- button -->
+          <div class="flex flex-row items-center justify-between gap-x-4">
+            <button class="flex-1 border-2 border-slate-400 text-slate-300 rounded-xl py-1">Cancel</button>
+            <button id="add-new-category" class="flex-1 bg-slate-500 text-slate-200 rounded-xl py-1">Add new
+              category</button>
+          </div>
+        </form>
+      </div>
+      <!-- product form -->
+      <div class="mt-12 mb-6">
+        <h2 class="text-xl text-slate-300 font-bold mb-2">Add New Product</h2>
+        <form class="bg-slate-700 p-4 rounded-lg flex flex-col gap-y-4">
+          <div>
+            <!-- input -->
+            <label for="product-title" class="block mb-1 text-slate-200">Title</label>
+            <input type="text" name="product-title" id="product-title"
+              class="bg-transparent rounded-xl border-2 border-slate-500 text-slate-400">
+          </div>
+          <div>
+            <label for="product-quantity" class="block mb-1 text-slate-200">quantity</label>
+            <input type="number" name="product-quantity" id="product-quantity"
+              class="bg-transparent rounded-xl border-2 border-slate-500 text-slate-400"></input>
+          </div>
+          <div>
+            <label for="product-category" class="block mb-1 text-slate-200">Category</label>
+            <select name="product-category" id="product-category"
+              class="bg-transparent text-slate-400 rounded-xl w-full">
+            </select>
+          </div>
+          <!-- button -->
+          <div class="flex flex-row items-center justify-between gap-x-4">
+            <button id="add-new-product" class="flex-1 bg-slate-500 text-slate-200 rounded-xl py-1">Add new
+              Product</button>
+          </div>
+        </form>
+      </div>
+      <!-- product list -->
+      <h2 class="text-xl text-slate-300 font-bold mb-2">Product List</h2>
+      <!-- search  -->
+      <div class="flex items-center justify-between mb-8">
+        <label for="search-input" class="text-slate-100 text-lg">Search</label>
+        <input type="text" name="search" id="search-input"
+          class="bg-transparent rounded-xl border border-slate-500 text-slate-400">
+      </div>
+      <!-- sort -->
+      <div class="flex items-center justify-between mb-8">
+        <label for="sort-product" class="text-slate-100 text-lg">sort</label>
+        <select name="sort-product" id="sort-product" class="bg-transparent text-slate-400 rounded-xl">
+          <option class=" bg-slate-500 text-slate-300" value="All">Selected a Category</option>
+          <option class=" bg-slate-500 text-slate-300" value="new" selected>Newest</option>
+          <option class=" bg-slate-500 text-slate-300" value="old">Oldest</option>
+        </select>
+      </div>
+      <div id="products-list">
+        <div class="flex items-center justify-between mb-2 w-full min-w-[400px]">
+          <span class="text-slate-400"></span>
+          <div class="flex items-center gap-x-3">
+            <span class="text-slate-400"></span>
+            <span class="block px-3 py-0.5 text-slate-400 border border-slate-400 text-sm rounded-2xl"></span>
+            <span
+              class="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 border-2 border-slate-300 text-slate-300"></span>
+            <button
+              class="delete-product border px-2 py-o.5 rounded-2xl border-red-800 text-red-800 delete-product"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-20"></div>
+  </div>
+  </div>
+  </div>
+  <!-- javaScript -->
+  <script src="/src/js/main.js" type="module"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+
+</html>
