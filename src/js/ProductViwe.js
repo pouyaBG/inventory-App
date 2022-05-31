@@ -78,13 +78,18 @@ export class ProductViwe {
         class="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 border-2 border-slate-300 text-slate-300">${
           item.quantity
         }</span>
-        <button class="delete-product border px-2 py-o.5 rounded-2xl border-red-800 text-red-800 delete-product" 
+        <button class="delete-product border px-2 py-o.5 rounded-2xl border-red-800 text-red-800" 
         data-product-id=${item.id}>Delete</button>
         </div>
       </div>`;
     });
     const productsDOM = document.getElementById("products-list");
     productsDOM.innerHTML = result;
+    // delete product
+    const deleteBtn = [...document.querySelectorAll(".delete-product")];
+    deleteBtn.forEach((item) => {
+      item.addEventListener("click", (e) => this.deleteProduct(e));
+    });
   }
   // search in products
   searchProduct(e) {
@@ -111,5 +116,19 @@ export class ProductViwe {
         })
       );
     }
+  }
+  // delete product
+  deleteProduct(e) {
+    const productId = e.target.dataset.productId;
+    Storage.deleteProduct(productId);
+    this.products = Storage.getAllProducts();
+    this.createProductsList(this.products);
+    Toastify({
+      text: "Deleted successfully",
+      duration: 3000,
+      style: {
+        background: "linear-gradient(to right, #c4160d, #1c456e)",
+      },
+    }).showToast();
   }
 }
