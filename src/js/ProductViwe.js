@@ -14,6 +14,7 @@ export class ProductViwe {
     searchInput.addEventListener("input", (e) => this.searchProduct(e));
     sortProduct.addEventListener("change", (e) => this.sortProducts(e));
     this.products = [];
+    length.innerHTML = JSON.parse(localStorage.getItem("products")).length;
   }
   // add new product
   addNewProduct(e) {
@@ -41,6 +42,8 @@ export class ProductViwe {
           background: "linear-gradient(to right, #1c456e, #96c93d)",
         },
       }).showToast();
+      length.innerHTML = JSON.parse(localStorage.getItem("products")).length;
+
       // title= "";
       // quantity = "";
       // category= "";
@@ -67,13 +70,16 @@ export class ProductViwe {
       <div class="flex items-center justify-between mb-2 w-full min-w-[400px]">
       <span class="text-slate-400">${item.title}</span>
       <div class="flex items-center gap-x-3">
-        <span class="text-slate-400">${new Date().toLocaleDateString(
-          "fa-IR",
-          options
-        )}</span>
-        <span class="block px-3 py-0.5 text-slate-400 border border-slate-400 text-sm rounded-2xl">${
+      <span class="text-slate-400">${new Date().toLocaleDateString(
+        "fa-IR",
+        options
+      )}</span>
+        <span class="block px-3 py-0.5 text-slate-400 border border-slate-400 text-sm rounded-full" id="edit">${
           selectedCategory.title
         }</span>
+        <button id="edit-product" class=" border px-2 py-o.5 rounded-2xl border-green-800 text-green-800 data-product-id=${
+          item.id
+        } ">Edit</button>
         <span
         class="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 border-2 border-slate-300 text-slate-300">${
           item.quantity
@@ -98,7 +104,6 @@ export class ProductViwe {
       return item.title.includes(searchValue);
     });
     this.createProductsList(searchResult);
-    console.log(this.products);
   }
   // sorttd products by 1.new or 2.old
   sortProducts() {
@@ -123,6 +128,7 @@ export class ProductViwe {
     Storage.deleteProduct(productId);
     this.products = Storage.getAllProducts();
     this.createProductsList(this.products);
+    length.innerHTML = JSON.parse(localStorage.getItem("products")).length;
     Toastify({
       text: "Deleted successfully",
       duration: 3000,
